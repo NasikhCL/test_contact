@@ -14,23 +14,27 @@ const[phone, setPhone]=useState('')
 
 
 
-function addContact(){
+ function addContact(){
+    let newId = contacts.length+1
+    console.log(newId)
     fetch('https://jsonplaceholder.typicode.com/users', {
-  method: 'POST',
-  body: JSON.stringify({
-    name: name,
-    email: email,
-    phone: phone,
-    id: contacts.length + 1
-  }),
-  headers: {
-    'Content-type': 'application/json; charset=UTF-8',
-  },
-})
-  .then((response) => response.json())
-  .then((json) => handleNewContact(json));
-
-   navigate('/')
+        method: 'POST',
+        body: JSON.stringify({
+            id: newId,
+            name: name,
+            email: email,
+            phone: phone
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+    .then(response=> response.json())
+    .then( newData => console.log(newData));
+         handleNewContact(newId,name,email,phone)
+           
+//   console.log(newData)
+    navigate('/')
 
 }
     return(
@@ -52,7 +56,7 @@ function addContact(){
                     <input type="phone" className="form-control" onChange={(e)=> setPhone(e.target.value)}  value={phone} name="phone" id="phone" placeholder="Enter Phone" required/>
                 </div>
                 <button type="submit" className="btn btn-dark">Confirm</button> 
-                <Link to="/"><button type="submit" class="btn btn-danger">cancel</button></Link>
+                <Link to="/"><button type="submit" className="btn btn-danger">cancel</button></Link>
             </form>
 
         </div>

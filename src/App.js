@@ -32,19 +32,23 @@ function App() {
   },[])
 
 
-  function addNewContact(newContact){
+  function addNewContact(id,name,email,phone){
+    let newContact ={ id,name,email,phone }
+    // console.log(newContact)
     setAddress(prevState=>{
       return{
-        ...prevState,
-        contacts: [...prevState.contacts, newContact]
+
+        contacts: [...prevState.contacts, newContact],
+        isLoading: false
       }
       
   })
   toast.success('New Contact Added')
+  // navigate('/')
   }
   
 
- function  editContact(data){
+ function editContact(data){
 
     setAddress(prevState=>{
       const newArary = prevState.contacts.map(item =>( (item.id === data.id) ? data : item ))
