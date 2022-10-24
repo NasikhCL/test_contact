@@ -8,10 +8,10 @@ export default function List(props){
     const{ contacts , isLoading, handleDeleteContact } = props
     let contact
 
-    contact = contacts.map(item => {
+    contact = contacts.map((item,index) => {
         return(
             <tr  key={item.id}>
-                    <th scope="row">{item.id}</th>
+                    <th scope="row">{index+1}</th>
                     <td>{item.name}</td>
                     <td>{item.email}</td>
                     <td>{item.phone}</td>
