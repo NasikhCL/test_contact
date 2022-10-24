@@ -1,10 +1,10 @@
 import React,{useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Add(props){
 
-// const navigate = useNavigate()
+const navigate = useNavigate()
 const {contacts, handleNewContact} =props    
 
 const[name, setName]=useState('')
@@ -30,7 +30,7 @@ function addContact(){
   .then((response) => response.json())
   .then((json) => handleNewContact(json));
 
-// navigate('/')
+   navigate('/')
 
 }
     return(
