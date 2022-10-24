@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import {Route,Routes, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css';
 
 
 import Header  from './components/Header';
@@ -38,40 +40,10 @@ function App() {
       }
       
   })
+  toast.success('New Contact Added')
   }
   
 
-//   function updateContact(e){
-//     console.log(e.target)
-//         const {name, value ,className:contactid } = e.target
-    
-//         setAddress(prevState=>{
-//           console.log(prevState.contacts)
-//           let newArray= prevState.contacts
-
-//           let upArray = newArray.map(item =>{
-//             console.log(item.id, contactid)
-
-//             if(item.id === parseInt(contactid,10)){
-//               console.log(item.id,value)
-//               console.log([item.name])
-
-//               return {
-//                 ...item,
-//                 [name] : value
-//               }
-//             }else{
-//               console.log('erturn')
-//                 return item
-//               }
-//           })
-//           console.log(upArray)
-//           return {
-//             ...prevState,
-//             contacts: upArray
-//           }
-//         })
-// }
  function  editContact(data){
 
     setAddress(prevState=>{
@@ -83,8 +55,8 @@ function App() {
     })
 
     // console.log()
+    toast.success('Contact Edited') 
     navigate('/')
- 
 }
  
 function deleteContact(id){
@@ -110,6 +82,7 @@ setAddress(prevState=>{
     contacts: newArary
   }
 })
+toast.error("Contact Deleted!");
 
 }     
 
@@ -117,8 +90,9 @@ setAddress(prevState=>{
 
     return (
       <div className="App">
-        <Header />
 
+        <Header />
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Home contacts={address.contacts} isLoading={address.isLoading} handleDeleteContact={deleteContact}/>}/>     
           <Route path="/edit/:contactid" element={<Edits contacts={address.contacts} editContact={editContact}/>} />

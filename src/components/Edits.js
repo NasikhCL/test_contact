@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-
+import {toast} from 'react-toastify'
 
 export default function Edits(props){
     const {contacts, editContact} = props
@@ -43,7 +43,7 @@ export default function Edits(props){
         .then((data) => editContact(data));
 
     // editContact(editName,editEmail,editPhone, contactid)
-     
+   
 }
 
 
