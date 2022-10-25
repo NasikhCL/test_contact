@@ -10,6 +10,7 @@ import Edits from './components/Edits';
 import Add from './components/Add';
 
 
+
 function App() {
 
   const navigate = useNavigate()
@@ -34,7 +35,7 @@ function App() {
 
   function addNewContact(id,name,email,phone){
     let newContact ={ id,name,email,phone }
-    // console.log(newContact)
+
     setAddress(prevState=>{
       return{
 
