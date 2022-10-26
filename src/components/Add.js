@@ -33,10 +33,12 @@ const[phone, setPhone]=useState('')
     .then( newData => console.log(newData));
          handleNewContact(newId,name,email,phone)
            
-//   console.log(newData)
+
     navigate('/')
 
 }
+
+
     return(
         <div className="add-contact">
             <h2>Add New Contact</h2>

@@ -14,7 +14,7 @@ import Add from './components/Add';
 function App() {
 
   const navigate = useNavigate()
-  const [address , setAddress] = useState({
+  const [contactBook , setContactBook] = useState({
     contacts: [],
     isLoading: true
 
@@ -24,7 +24,7 @@ function App() {
     console.log('useeffect run')
     fetch("https://jsonplaceholder.typicode.com/users")
         .then(res=> res.json())
-        .then(res => setAddress(()=>{
+        .then(res => setContactBook(()=>{
             return {
                 contacts: res,
                 isLoading: false
@@ -36,7 +36,7 @@ function App() {
   function addNewContact(id,name,email,phone){
     let newContact ={ id,name,email,phone }
 
-    setAddress(prevState=>{
+    setContactBook(prevState=>{
       return{
 
         contacts: [...prevState.contacts, newContact],
@@ -45,13 +45,13 @@ function App() {
       
   })
   toast.success('New Contact Added')
-  // navigate('/')
+
   }
   
 
  function editContact(data){
 
-    setAddress(prevState=>{
+    setContactBook(prevState=>{
       const newArary = prevState.contacts.map(item =>( (item.id === data.id) ? data : item ))
       return{
         contacts:newArary,
@@ -59,7 +59,7 @@ function App() {
       }
     })
 
-    // console.log()
+  
     toast.success('Contact Edited') 
     navigate('/')
 }
@@ -71,14 +71,11 @@ function deleteContact(id){
   })
   .then(res => res.json())
   .then(res=> console.log(res)
-    //  setAddress(({
-  //   contacts: res,
-  //   isLoading: true
-  // }))
+    
   )
   
-      // navigate('/')
-setAddress(prevState=>{
+   
+setContactBook(prevState=>{
  
   let newArary = prevState.contacts.filter(item => item.id !== id)
 
@@ -99,9 +96,9 @@ toast.error("Contact Deleted!");
         <Header />
         <ToastContainer />
         <Routes>
-          <Route path="/" element={<Home contacts={address.contacts} isLoading={address.isLoading} handleDeleteContact={deleteContact}/>}/>     
-          <Route path="/edit/:contactid" element={<Edits contacts={address.contacts} editContact={editContact}/>} />
-          <Route exact path="/addcontact" element={<Add contacts={address.contacts} handleNewContact={addNewContact} />}/>
+          <Route path="/" element={<Home contacts={contactBook.contacts} isLoading={contactBook.isLoading} handleDeleteContact={deleteContact}/>}/>     
+          <Route path="/edit/:contactid" element={<Edits contacts={contactBook.contacts} editContact={editContact}/>} />
+          <Route exact path="/addcontact" element={<Add contacts={contactBook.contacts} handleNewContact={addNewContact} />}/>
         </Routes>
       </div>
     )
